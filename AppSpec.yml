@@ -4,7 +4,12 @@ files:
   - source: /
     destination: /home/ec2-user/app
 hooks:
+  BeforeInstall:
+    - location: scripts/set_permissions.sh
+      timeout: 300
+      runas: root
   ApplicationStart:
     - location: scripts/start.sh
       timeout: 300
       runas: root
+
