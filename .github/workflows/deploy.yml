@@ -1,0 +1,19 @@
+name: Deploy to AWS CodeDeploy
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to AWS
+        uses: aws-actions/aws-codedeploy-deploy@v1
+        with:
+          application-name: MyTestApp
+          deployment-group-name: TestDeploymentGroup
+          github-token: ${{ secrets.GITHUB_TOKEN }}
